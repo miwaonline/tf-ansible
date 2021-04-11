@@ -1,0 +1,9 @@
+[appserver]
+%{ for ip in appservers ~}
+${ip}
+%{ endfor ~}
+
+[webserver]
+%{ for ip in webservers ~}
+${ip}
+%{ endfor ~}

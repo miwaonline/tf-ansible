@@ -1,0 +1,1 @@
+This is a repo to store some work on a hypothetical project that uses AWS, Terraform and Ansible
