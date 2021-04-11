@@ -1,0 +1,10 @@
+---
+- hosts: webserver
+  vars:
+    nodejs_version: 12.4.0
+  tasks:
+    - name: Install nginx in Debian
+      apt:
+        name: nginx
+        state: present
+        install_recommends: False # it installs too many unneeded garbage

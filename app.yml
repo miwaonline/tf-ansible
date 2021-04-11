@@ -1,0 +1,28 @@
+---
+- hosts: appserver
+  vars:
+    nodejs_version: 12.4.0
+  tasks:
+  - name: Ensure additional apt packages are installed
+    apt:
+      name:
+        - 'python-apt'
+        - 'gpg-agent'
+        - 'apt-transport-https'
+      state: 'present'
+      update_cache: True # it might be outdated the first time playbook runs
+
+  - name: Add Node repository key
+    apt_key:
+      url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+      state: present
+
+  - name: Add repository
+    apt_repository:
+      repo: "deb https://deb.nodesource.com/node_{{ nodejs_version.split('.')[0] }}.x {{ ansible_distribution_release }} main"
+
+  - name: Install Node package
+    apt:
+      name: "nodejs"
+      state: present
+      update_cache: True # we want to update it after node repo was added
