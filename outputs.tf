@@ -10,11 +10,11 @@ output "webinstance_ids" {
 
 
 resource "local_file" "AnsibleInventory" {
- content = templatefile("inventory.template",
- {
-  webservers = aws_instance.webserver.*.private_ip,
-  appservers = aws_instance.appserver.*.private_ip
- }
- )
- filename = "inventory"
+  content = templatefile("inventory.template",
+    {
+      webservers = aws_instance.webserver.*.private_ip,
+      appservers = aws_instance.appserver.*.private_ip
+    }
+  )
+  filename = "inventory"
 }
